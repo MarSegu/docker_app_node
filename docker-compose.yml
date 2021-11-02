@@ -1,14 +1,22 @@
+# Versión del compose file
 version: "3.8"
-
+# Servicios que componen nuestra aplicación.
+## Un servicio puede estar compuesto por uno o más contenedores.
 services:
+# nombre del servicio.
   app:
+    # Imagen a utilizar, a que todo contenedor nace de una imagen.
     image: platziapp
     environment:
       MONGO_URL: "mongodb://db:27017/test"
+    # Indica que este servicio depende de otro, en este caso DB.
+    # El servicio app solo iniciara si el servicio db inicia correctamente.
     depends_on:
       - db
+    # Puerto del contenedor expuesto.
     ports:
-      - "3000:3000"
+      - "3000-3010:3000"
 
   db:
-    image: mongo
+    #imagen del contenedor
+    image: mongo 
